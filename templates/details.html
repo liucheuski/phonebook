@@ -5,20 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-<h1>{{ name.person_name }}</h1>
-<p><strong>{{ method }}</strong></p>
-{% if error_message %}
-    <p>
-        <strong>{{ error_message }}</strong>
-    </p>
-{% endif %}
-{% csrf_token %}
-{% for detail in name.detail_set.all %}
-    <label for="detail{{ forloop.counter }}">
-        <p2>Phone:{{ detail.phone }}</p2> <br>
-         <p2>Email:{{ detail.email }}</p2>
-    <hr>
-    </label><br>
-{% endfor %}
+{% extends 'base.html' %}
+{% block main %}
+    <h1>{{ name.person_name }}</h1>
+    <p><strong>{{ method }}</strong></p>
+    {% if error_message %}
+        <p>
+            <strong>{{ error_message }}</strong>
+        </p>
+    {% endif %}
+    {% csrf_token %}
+    {% for detail in name.detail_set.all %}
+        <label for="detail{{ forloop.counter }}">
+            <p2>Phone:{{ detail.phone }}</p2>
+            <br>
+            <p2>Email:{{ detail.email }}</p2>
+            <hr>
+        </label><br>
+    {% endfor %}
+{% endblock %}
 </body>
 </html>
